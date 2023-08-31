@@ -8,10 +8,21 @@ def search_user(resultado, cpf):
     print("CPF não encontrado")
     return -1
 
+
 def cpf_usuario(resultado):
-    cpf = input("Digite o CPF: ")
-    posicao = search_user(resultado, cpf)
-    return posicao
+    cont = 0
+    while True:
+        cpf = input("Digite o CPF: ")
+        posicao = search_user(resultado, cpf)
+
+        cont += 1
+        if posicao != -1:
+            break
+        elif cont >= 3:
+            print("Cadastre-se")
+            exit()
+    return posicao 
+
 
 def senha_usuario(senha_bd):
     senha = input("Digite a senha: ")

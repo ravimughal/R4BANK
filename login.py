@@ -13,16 +13,24 @@ def conect_db():
     return conn
 
 
-def read(conn):
+def read_user(conn):
     cursor = conn.cursor()
-    comando = f'SELECT cpf FROM  usuarios'
+    comando = f'SELECT cpf FROM usuarios'
     cursor.execute(comando)
     resultado = cursor.fetchall()
     cursor.close()
 
-    print(resultado)
     return resultado
 
+
+def read_password(conn, posicao):
+    cursor = conn.cursor()
+    comando = f'SELECT senha FROM usuarios'
+    cursor.execute(comando)
+    resultado = cursor.fetchall()
+    cursor.close()
+
+    return resultado[posicao]
 
 def search_user(resultado, cpf):
     cont = 0
@@ -37,24 +45,28 @@ def search_user(resultado, cpf):
     print("CPF não encontrado")
     return -1
 
+def serch_password():
+    pass
+
 
 def cpf_usuario(resultado):
     cpf = input("Digite o cpf: ")
+    posicao = search_user(resultado, cpf)
+    return posicao
 
-    search_user(resultado, cpf)
-
-    return cpf
-
-
-def senha_usuario():
+def senha_usuario(senha_bd):
     senha = input("Digite a senha: ")
-
+    
+    if senha == senha_bd[0]:
+        print("logado")
+    
     return senha
 
 
 def main():
     conn = conect_db()
-    cpf_usuario(read(conn))
+    posicao = cpf_usuario(read_user(conn))
+    senha_usuario(read_password(conn, posicao))
     conn.close()
 
 

@@ -20,13 +20,20 @@ def cpf_usuario(resultado):
             break
         elif cont >= 3:
             print("Cadastre-se")
-            exit()
-    return posicao 
+            break
+    return posicao
 
 
 def senha_usuario(senha_bd):
-    senha = input("Digite a senha: ")
-    if senha == senha_bd[0]:
-        print("Logado")
-    else:
-        print("Senha incorreta")
+    cont = 0
+    while True:
+        senha = input("Digite a senha: ")
+
+        cont += 1
+        if senha == senha_bd[0]:
+            print("Logado")
+            return 1 
+        else:
+            print("Senha incorreta")
+            if cont >= 3:
+                return 0

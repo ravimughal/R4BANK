@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 def connect_db():
     conn = mysql.connector.connect(
         host="localhost",
@@ -9,6 +10,7 @@ def connect_db():
     )
     return conn
 
+
 def read_user(conn):
     cursor = conn.cursor()
     comando = f'SELECT cpf FROM usuarios'
@@ -17,6 +19,7 @@ def read_user(conn):
     cursor.close()
     return resultado
 
+
 def read_password(conn, posicao):
     cursor = conn.cursor()
     comando = f'SELECT senha FROM usuarios'
@@ -24,3 +27,15 @@ def read_password(conn, posicao):
     resultado = cursor.fetchall()
     cursor.close()
     return resultado[posicao]
+
+
+def create_user(conn, dados):
+    cursor = conn.cursor()
+    comando = f'INSERT INTO usuarios(cpf, email, nome, senha) VALUES("{dados[0]}", "{dados[1]}", "{dados[2]}", "{dados[3]}")'
+    cursor.execute(comando)
+    conn.commit()
+
+
+if __name__ == '__main__':
+    conn = connect_db()
+    create_user(conn, 123, 'ravi@hotmail.com', 'ravi', 'teste123')

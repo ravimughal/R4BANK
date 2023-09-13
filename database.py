@@ -17,7 +17,10 @@ def read_user(conn):
     cursor.execute(comando)
     resultado = cursor.fetchall()
     cursor.close()
-    return resultado
+
+    # extrair strings das tuplas
+    cpf = [tupla[0] for tupla in resultado]
+    return cpf
 
 
 def read_password(conn, posicao):

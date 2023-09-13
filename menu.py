@@ -20,6 +20,8 @@ Selecione uma opção:
     elif msg == 2:
         conn = database.connect_db()
         dados = cadastrar.cadastrar()
+        if dados == -1:
+            return dados
         database.create_user(conn, dados)
     elif msg == 3:
         exit()

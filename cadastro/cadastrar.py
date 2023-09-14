@@ -1,5 +1,6 @@
 from cadastro import requisicoes
 from cadastro import erros
+from cadastro import password_security
 import database
 
 def cadastrar():
@@ -15,7 +16,12 @@ def cadastrar():
         return -1
 
     email = requisicoes.email()
-    senha = requisicoes.senha()
+
+    while True:
+        senha = requisicoes.senha()
+        verificacao = password_security.executar_verificacoes_de_senha(senha)
+        if verificacao == 1:
+            break
 
     return cpf, email, nome, senha
     

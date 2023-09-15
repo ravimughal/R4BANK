@@ -8,9 +8,8 @@ def validacao_cpf(cpf):
         return -1
     verificando = verificando_cpf(comprimento)
     if verificando == 1:
-        return 1
+        return cpf
     else:
-        print("insira um CPF valido")
         return 0    
 
 def comprimento_cpf(cpf):

@@ -1,5 +1,5 @@
 from cadastro import erros
-
+from cadastro import validacao_cpf
 def nome():
     while True:
         nome = input("Digite seu nome: ")

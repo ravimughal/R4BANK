@@ -1,3 +1,5 @@
+from cadastro import validacao_cpf
+
 def search_user(resultado, cpf):
     cont = 0
     for i in resultado:
@@ -11,6 +13,7 @@ def search_user(resultado, cpf):
 
 def cpf_usuario(resultado):
     cont = 0
+    cpf = ''
     while True:
         cpf = input("Digite o CPF: ")
         posicao = search_user(resultado, cpf)

@@ -1,6 +1,3 @@
-import re
-
-
 def validacao_cpf(cpf):
     padronizando = padronizando_cpf(cpf)
     comprimento = comprimento_cpf(padronizando)

@@ -6,11 +6,13 @@ def main():
     resultado = database.read_user(conn)
     posicao = authentication.cpf_usuario(resultado)
 
-    if posicao != 1:
+    if posicao >= 1:
         senha = database.read_password(conn, posicao)
         sucess = authentication.senha_usuario(senha)
         conn.close()
         return sucess
+    
+    return 0
 
 
 if __name__ == '__main__':

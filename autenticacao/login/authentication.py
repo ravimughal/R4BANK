@@ -1,5 +1,3 @@
-from cadastro import validacao_cpf
-
 def search_user(resultado, cpf):
     cont = 0
     for i in resultado:
@@ -33,6 +31,7 @@ def senha_usuario(senha_bd):
         senha = input("Digite a senha: ")
 
         cont += 1
+        print(senha_bd)
         if senha == senha_bd[0]:
             print("Logado")
             return 1 
@@ -40,3 +39,7 @@ def senha_usuario(senha_bd):
             print("Senha incorreta")
             if cont >= 3:
                 return 0
+
+
+if __name__ == '__main__':
+    pass

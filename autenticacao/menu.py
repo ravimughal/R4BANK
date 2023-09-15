@@ -30,5 +30,5 @@ Selecione uma opção:
 
 while True:
     opt_res = opt()
-    if opt_res == 1:
+    if opt_res == 3:
         break

@@ -45,12 +45,12 @@ def read_password(conn, posicao):
 
 def create_user(conn, dados):
     cursor = conn.cursor()
-    dados[0] = validacao_cpf.padronizando_cpf(dados[0])
-    comando = f'INSERT INTO usuarios(cpf, email, nome, senha) VALUES("{dados[0]}", "{dados[1]}", "{dados[2]}", "{dados[3]}")'
+    cpf = validacao_cpf.padronizando_cpf(dados[0])
+    comando = f'INSERT INTO usuarios(cpf, email, nome, senha) VALUES("{cpf}", "{dados[1]}", "{dados[2]}", "{dados[3]}")'
     cursor.execute(comando)
     conn.commit()
 
 
 if __name__ == '__main__':
     conn = connect_db()
-    create_user(conn, [f'123', 'ravi@hotmail.com', 'ravi', 'teste123'])
+    create_user(conn, [f'{gerador.gerar_cpf()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])

@@ -23,15 +23,7 @@ def read_user(conn):
     cpf = [tupla[0] for tupla in resultado]
     return cpf
 
-def id_user(conn):
-    cursor = conn.cursor()
-    comando = f'SELECT id FROM usuarios'
-    cursor.execute(comando)
-    resultado = cursor.fetchall()
-    cursor.close
 
-    id = [tupla[0] for tupla in resultado]
-    return id
 
 def read_email(conn):
     cursor = conn.cursor()
@@ -52,6 +44,14 @@ def read_password(conn, posicao):
     cursor.close()
     return resultado[posicao]
 
+def id_user(conn, posicao):
+    cursor = conn.cursor()
+    comando = f'SELECT id FROM usuarios'
+    cursor.execute(comando)
+    resultado = cursor.fetchall()
+    cursor.close
+
+    return resultado[posicao]
 
 def create_user(conn, dados):
     cursor = conn.cursor()

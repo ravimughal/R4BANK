@@ -9,7 +9,11 @@ def main():
     if posicao >= 1:
         senha = database.read_password(conn, posicao)
         sucess = authentication.senha_usuario(senha)
+        id_user = database.id_user(conn, posicao)
+
         conn.close()
+
+        print(id_user)
         return sucess
     
     return 0

@@ -3,7 +3,8 @@ from login import main
 from cadastro import cadastrar
 
 
-print("Bem vindo ao R4 BA2NK")
+print("Bem vindo ao R4 BANK")
+
 
 def opt():
     msg = input("""
@@ -12,7 +13,7 @@ Selecione uma opção:
 2 - Cadastrar
 3 - Sair 
 """)
-    
+
     msg = int(msg)
 
     if msg == 1:
@@ -25,8 +26,9 @@ Selecione uma opção:
         database.create_user(conn, dados)
     elif msg == 3:
         exit()
-    
+
     return 1
+
 
 while True:
     opt_res = opt()

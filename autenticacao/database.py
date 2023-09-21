@@ -23,6 +23,16 @@ def read_user(conn):
     cpf = [tupla[0] for tupla in resultado]
     return cpf
 
+def id_user(conn):
+    cursor = conn.cursor()
+    comando = f'SELECT id FROM usuarios'
+    cursor.execute(comando)
+    resultado = cursor.fetchall()
+    cursor.close
+
+    id = [tupla[0] for tupla in resultado]
+    return id
+
 def read_email(conn):
     cursor = conn.cursor()
     comando = f'SELECT email FROM usuarios'

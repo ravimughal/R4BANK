@@ -1,10 +1,11 @@
 def search_user(resultado, cpf):
     cont = 0
     for i in resultado:
-        if i[0] == cpf:
+        if i == cpf:
             print("CPF encontrado")
             return cont
         cont += 1
+    print(cpf, resultado)
     print("CPF não encontrado")
     return -1
 

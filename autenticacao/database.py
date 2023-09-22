@@ -53,11 +53,14 @@ def id_user(conn, posicao):
 
     return resultado[posicao]
 
+
 def create_user(conn, dados):
     cursor = conn.cursor()
     cpf = validacao_cpf.padronizando_cpf(dados[0])
     comando = f'INSERT INTO usuarios(cpf, email, nome, senha) VALUES("{cpf}", "{dados[1]}", "{dados[2]}", "{dados[3]}")'
+    conta_table = f'INSERT INTO conta(cpf, saldo, historico) VALUES("{cpf}", "0", "0")'
     cursor.execute(comando)
+    cursor.execute(conta_table)
     conn.commit()
 
 

@@ -1,8 +1,11 @@
 import database as db
 
 class Cliente:
-    def __init__(self, nome):
-        self.name = nome
+    def __init__(self, nome, id):
+        self.id = id
+        self.nome = nome
 
 
-nome = Cliente()
+conn = db.connect_db()
+
+dados_cliente = Cliente("Ravi", 15)

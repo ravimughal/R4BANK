@@ -58,12 +58,26 @@ def create_user(conn, dados):
     cursor = conn.cursor()
     cpf = validacao_cpf.padronizando_cpf(dados[0])
     comando = f'INSERT INTO usuarios(cpf, email, nome, senha) VALUES("{cpf}", "{dados[1]}", "{dados[2]}", "{dados[3]}")'
-    conta_table = f'INSERT INTO conta(cpf, saldo, historico) VALUES("{cpf}", "0", "0")'
+    conta_table = f'INSERT INTO conta(cpf, nome,saldo, historico) VALUES("{cpf}","{dados[2]}","0", "0")'
     cursor.execute(comando)
     cursor.execute(conta_table)
     conn.commit()
 
+def search_user(conn):
+    cursor = conn.cursor()
+    comando = f'SELECT cpf FROM conta'
+    cursor.execute(comando)
+    resultado = cursor.fetchall()
+    cursor.close()
+    resultado = [tupla[0] for tupla in resultado]
+
+    print(resultado)
+    return resultado
 
 if __name__ == '__main__':
     conn = connect_db()
     create_user(conn, [f'{gerador.gerar_cpf()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])
+
+if __name__ == '__main__':
+    conn = connect_db()
+    search_user(conn)

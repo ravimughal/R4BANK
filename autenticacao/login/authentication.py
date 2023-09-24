@@ -19,7 +19,7 @@ def cpf_usuario(resultado):
 
         cont += 1
         if posicao != -1:
-            break
+            return cpf
         elif cont >= 3:
             print("Cadastre-se")
             break

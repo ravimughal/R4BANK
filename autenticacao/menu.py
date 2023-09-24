@@ -5,6 +5,7 @@ from cadastro import cadastrar
 
 print("Bem vindo ao R4 BANK")
 
+dados = []
 
 def opt():
     msg = input("""
@@ -24,11 +25,11 @@ Selecione uma opção:
         if dados == -1:
             return dados
         database.create_user(conn, dados)
+        return dados
     elif msg == 3:
         exit()
 
     return 1
-
 
 while True:
     opt_res = opt()

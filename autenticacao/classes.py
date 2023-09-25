@@ -1,4 +1,5 @@
 import database as db
+import app
 
 class Cliente():
     def __init__(self, cpf, nome):
@@ -32,3 +33,5 @@ class Banco(Cliente):
         print(self.saldo)
 
 conn = db.connect_db()
+
+get_name = db.search_user(conn)

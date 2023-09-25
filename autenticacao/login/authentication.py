@@ -32,7 +32,6 @@ def senha_usuario(senha_bd):
         senha = input("Digite a senha: ")
 
         cont += 1
-        print(senha_bd)
         if senha == senha_bd[0]:
             print("Logado")
             return 1 
@@ -43,4 +42,4 @@ def senha_usuario(senha_bd):
 
 
 if __name__ == '__main__':
-    pass
+    senha_usuario('123')

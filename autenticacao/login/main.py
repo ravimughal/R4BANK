@@ -1,22 +1,19 @@
 import database
-from login import app
 from login import authentication
 
 def main():
     conn = database.connect_db()
     resultado = database.read_user(conn)
-    posicao = authentication.cpf_usuario(resultado)
+    cpf = authentication.cpf_usuario(resultado)
 
-    if int(posicao) >= 1:
-        senha = database.read_password(conn, posicao)
+    if int(cpf) >= 1:
+        senha = database.read_password(conn, cpf)
         sucess = authentication.senha_usuario(senha)
-        id_user = database.id_user(conn, posicao)
-
         conn.close()
 
-        print(posicao)
+        print('cpf', cpf)
         if sucess == 1:
-            app.main()       
+            pass
         return sucess
     
     return 0

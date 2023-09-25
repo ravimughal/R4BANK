@@ -36,22 +36,26 @@ def read_email(conn):
     return emails
 
 
-def read_password(conn, posicao):
+def read_password(conn, cpf):
     cursor = conn.cursor()
-    comando = f'SELECT senha FROM usuarios'
-    cursor.execute(comando)
-    resultado = cursor.fetchall()
-    cursor.close()
-    return resultado[posicao]
+    comando = f'SELECT senha FROM usuarios WHERE cpf = %s'
 
-def id_user(conn, posicao):
+    cursor.execute(comando, (cpf,))
+    resultado = cursor.fetchone()
+    cursor.close()
+
+    print(resultado)
+
+    return resultado
+
+def id_user(conn):
     cursor = conn.cursor()
-    comando = f'SELECT id FROM usuarios'
+    comando = f'SELECT cpf FROM usuarios'
     cursor.execute(comando)
     resultado = cursor.fetchall()
     cursor.close
 
-    return resultado[posicao]
+    return resultado
 
 
 def create_user(conn, dados):
@@ -74,7 +78,7 @@ def search_user(conn):
     print(resultado)
     return resultado
 
-if __name__ == '__main__':
+if __name__ == '':
     conn = connect_db()
     create_user(conn, [f'{gerador.gerar_cpf()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])
 

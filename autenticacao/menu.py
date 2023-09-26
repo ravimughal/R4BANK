@@ -1,4 +1,5 @@
 import database
+import classes
 from login import main
 from cadastro import cadastrar
 
@@ -18,7 +19,13 @@ Selecione uma opção:
     msg = int(msg)
 
     if msg == 1:
-        main.main()
+        cpf_nome = main.main()
+        cpf = cpf_nome[0]
+        nome = cpf_nome[1]
+
+        cliente = classes.Cliente(nome, cpf)
+        cliente.show()
+
     elif msg == 2:
         conn = database.connect_db()
         dados = cadastrar.cadastrar()

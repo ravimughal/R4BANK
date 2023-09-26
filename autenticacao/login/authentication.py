@@ -5,7 +5,6 @@ def search_user(resultado, cpf):
             print("CPF encontrado")
             return cont
         cont += 1
-    print(cpf, resultado)
     print("CPF não encontrado")
     return -1
 
@@ -27,8 +26,6 @@ def cpf_usuario(resultado):
 
 
 def senha_usuario(senha_bd):
-    print('senha_bd é',senha_bd)
-    print('senha_bd[0] é', senha_bd[0])
     cont = 0
     while True:
         senha = input("Digite a senha: ")

@@ -32,6 +32,3 @@ class Banco(Cliente):
     def ver_saldo(self):
         print(self.saldo)
 
-conn = db.connect_db()
-
-get_name = db.search_user(conn)

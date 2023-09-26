@@ -1,4 +1,5 @@
 import database
+import app
 from login import authentication
 
 def main():
@@ -11,12 +12,9 @@ def main():
         senha = nome_e_senha[1]
         sucess = authentication.senha_usuario(senha)
         conn.close()
-
-        print('cpf', cpf)
         if sucess == 1:
-            pass
+            return nome, cpf
         return sucess
-    
     return 0
 
 if __name__ == '__main__':

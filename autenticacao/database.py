@@ -44,7 +44,6 @@ def read_password(conn, cpf):
     resultado = cursor.fetchone()
     cursor.close()
 
-    print(resultado[1])
     return resultado
 
 def id_user(conn):
@@ -74,7 +73,6 @@ def search_user(conn):
     cursor.close()
     resultado = [tupla[0] for tupla in resultado]
 
-    print(resultado)
     return resultado
 
 

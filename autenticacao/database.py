@@ -38,14 +38,13 @@ def read_email(conn):
 
 def read_password(conn, cpf):
     cursor = conn.cursor()
-    comando = f'SELECT senha FROM usuarios WHERE cpf = %s'
+    comando = f'SELECT nome, senha FROM usuarios WHERE cpf = %s'
 
     cursor.execute(comando, (cpf,))
     resultado = cursor.fetchone()
     cursor.close()
 
-    print(resultado)
-
+    print(resultado[1])
     return resultado
 
 def id_user(conn):
@@ -69,7 +68,7 @@ def create_user(conn, dados):
 
 def search_user(conn):
     cursor = conn.cursor()
-    comando = f'SELECT cpf FROM conta'
+    comando = f'SELECT cpf FROM conta WHERE cpf'
     cursor.execute(comando)
     resultado = cursor.fetchall()
     cursor.close()
@@ -77,6 +76,8 @@ def search_user(conn):
 
     print(resultado)
     return resultado
+
+
 
 if __name__ == '':
     conn = connect_db()

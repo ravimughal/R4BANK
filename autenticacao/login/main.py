@@ -5,9 +5,10 @@ def main():
     conn = database.connect_db()
     resultado = database.read_user(conn)
     cpf = authentication.cpf_usuario(resultado)
-
     if int(cpf) >= 1:
-        senha = database.read_password(conn, cpf)
+        nome_e_senha = database.read_password(conn, cpf)
+        nome = nome_e_senha[0]
+        senha = nome_e_senha[1]
         sucess = authentication.senha_usuario(senha)
         conn.close()
 

@@ -79,7 +79,7 @@ def search_user(conn):
 
 if __name__ == '':
     conn = connect_db()
-    create_user(conn, [f'{gerador.gerar_cpf()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])
+    create_user(conn, [f'{gerador.gerar_c80if()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])
 
 if __name__ == '__main__':
     conn = connect_db()

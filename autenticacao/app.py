@@ -1,8 +1,14 @@
 import classes
 
 def principal_app(cliente):
-    cliente.show()
+    print(cliente)
 
+    app_comands = str(input("""
+Selecione uma opção
+1 - Ver Saldo
+2 - Deposito 
+3 - Sacar
+"""))
 
 
 def inserir_nome_cpf(nome, cpf):

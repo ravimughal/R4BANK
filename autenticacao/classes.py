@@ -38,3 +38,5 @@ if __name__ == '__main__':
     conn = db.connect_db()
 
     db.saldo(conn, '12712582349')
+
+    usuario = Cliente()

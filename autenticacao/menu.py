@@ -24,8 +24,7 @@ Selecione uma opção:
         cpf = cpf_nome[0]
         nome = cpf_nome[1]
 
-        cliente = classes.Cliente(nome, cpf)
-        cliente.show()
+        cliente = classes.Banco(nome, cpf)
 
 
         if cpf and nome:
@@ -48,10 +47,7 @@ def bank(nome, cpf):
 
 while True:
     opt_res = opt()
-    print(opt_res)
-    print(opt_res[1])
     if opt_res[0] == 1:
-        print("logado")
         cliente = opt_res[1]
         while True:
             app.principal_app(cliente)

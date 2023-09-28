@@ -83,6 +83,7 @@ def saldo(conn, cpf):
     resultado = cursor.fetchone()
     cursor.close()
 
+    resultado = resultado[0]
     return resultado
 
 if __name__ == '':

@@ -48,9 +48,9 @@ def bank(nome, cpf):
 while True:
     opt_res = opt()
     if opt_res[0] == 1:
-        cliente = opt_res[1]
+        cliente_objeto = opt_res[1]
         while True:
-            app.principal_app(cliente)
+            app.principal_app(cliente_objeto)
 
     elif opt_res[0] == 3:
         break

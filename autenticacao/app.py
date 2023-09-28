@@ -1,7 +1,8 @@
 import classes
 
-def principal_app(cliente):
-    print(cliente)
+def principal_app(cliente_objeto):
+
+    cliente_objeto.show()
 
     app_comands = str(input("""
 Selecione uma opção

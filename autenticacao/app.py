@@ -3,6 +3,8 @@ import classes
 def principal_app(cliente):
     cliente.show()
 
+
+
 def inserir_nome_cpf(nome, cpf):
     print(nome, cpf)
     return nome, cpf

@@ -32,3 +32,9 @@ class Banco(Cliente):
     def ver_saldo(self):
         print(self.saldo)
 
+
+if __name__ == '__main__':
+
+    conn = db.connect_db()
+
+    db.saldo(conn, '12712582349')

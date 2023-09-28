@@ -76,6 +76,14 @@ def search_user(conn):
     return resultado
 
 
+def saldo(conn, cpf):
+    cursor = conn.cursor()
+    comando = f'SELECT saldo FROM conta WHERE cpf = {cpf}'
+    cursor.execute(comando)
+    resultado = cursor.fetchone()
+    cursor.close()
+
+    return resultado
 
 if __name__ == '':
     conn = connect_db()

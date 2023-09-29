@@ -18,7 +18,9 @@ class Banco(Cliente):
     def deposito(self, quantidade):
         self.quantidade = quantidade
         self.saldo = self.saldo + self.quantidade
-        print("total R$", self.saldo)
+        print("total R$", float(self.saldo))
+        conn = db.connect_db()
+        db.atualizar_saldo(conn, self.cpf, self.saldo)
 
     def saque(self, quantidade):
         self.quantidade = quantidade
@@ -27,10 +29,12 @@ class Banco(Cliente):
             return 0
 
         self.saldo = self.saldo - self.quantidade
-        print("total R$", self.saldo)
+        print("total R$", float(self.saldo))
+        conn = db.connect_db()
+        db.atualizar_saldo(conn, self.cpf, self.saldo)
 
     def ver_saldo(self):
-        print(self.saldo)
+        print(f"o saldo é de R${self.saldo}")
 
 
 if __name__ == '__main__':

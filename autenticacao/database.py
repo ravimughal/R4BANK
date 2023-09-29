@@ -86,9 +86,9 @@ def saldo(conn, cpf):
     resultado = resultado[0]
     return resultado
 
-def depositar(conn, cpf, valor):
+def atualizar_saldo(conn, cpf, saldo):
     cursor = conn.cursor()
-    comando = f'UPDATE conta SET saldo = {valor} WHERE cpf = {cpf}'
+    comando = f'UPDATE conta SET saldo = {saldo} WHERE cpf = {cpf}'
     cursor.execute(comando)
     conn.commit()
 

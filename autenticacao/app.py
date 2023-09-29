@@ -1,4 +1,5 @@
 import database
+import classes
 
 def principal_app(cliente_objeto):
     conn = database.connect_db()
@@ -14,22 +15,13 @@ Selecione uma opção
     
     if app_comands == 1:
         saldo = database.saldo(conn, cpf)
-        print(f"O saldo da conta é: {saldo}")
+        cliente_objeto.saldo = saldo
+        cliente_objeto.ver_saldo()
 
     elif app_comands == 2:
         valor = float(input("Digite o valor a ser depositado: "))
         database.depositar(conn, cpf, valor)
-
         
 
-
-
-
-
-def inserir_nome_cpf(nome, cpf):
-    print(nome, cpf)
-    return nome, cpf
-
-
-if __name__ == '__main__':
-    inserir_nome_cpf('ravi', '123')
+    elif app_comands == 3:
+        valor = float(input("Digite o valor do saque: "))

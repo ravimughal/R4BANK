@@ -17,13 +17,13 @@ Selecione uma opção
         print(f"O saldo da conta é: {saldo}")
 
     elif app_comands == 2:
-        depositar()
+        valor = float(input("Digite o valor a ser depositado: "))
+        database.depositar(conn, cpf, valor)
+
+        
 
 
 
-
-def depositar():
-    print("depositei")
 
 
 def inserir_nome_cpf(nome, cpf):

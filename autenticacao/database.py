@@ -86,6 +86,12 @@ def saldo(conn, cpf):
     resultado = resultado[0]
     return resultado
 
+def depositar(conn, cpf, valor):
+    cursor = conn.cursor()
+    comando = f'UPDATE conta SET saldo = {valor} WHERE cpf = {cpf}'
+    cursor.execute(comando)
+    conn.commit()
+
 if __name__ == '':
     conn = connect_db()
     create_user(conn, [f'{gerador.gerar_c80if()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])

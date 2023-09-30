@@ -2,7 +2,9 @@ import database
 import classes
 from cadastro import validacao_cpf
 
+
 def principal_app(cliente_objeto):
+
     conn = database.connect_db()
     cpf = cliente_objeto.cpf
 
@@ -27,7 +29,7 @@ Selecione uma opção
     elif app_comands == 3:
         quantidade = float(input("Digite o valor do saque: "))
         cliente_objeto.saque(quantidade)
-    
+
     elif app_comands == 4:
         quantidade = float(input("Digite o valor da transferencia: "))
         chave = str(input("Digite o CPF de quem vai receber: "))
@@ -39,9 +41,8 @@ Selecione uma opção
         if existe != chave:
             print("Digite um CPF válido")
             return 0
-        
-        nome_destinatario = database.procurar_nome(conn,chave)
-        
+
+        nome_destinatario = database.procurar_nome(conn, chave)
+
         destinatario = classes.Banco(chave, nome_destinatario)
         cliente_objeto.transferencia(quantidade, destinatario)
-        

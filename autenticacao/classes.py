@@ -32,6 +32,12 @@ class Banco(Cliente):
         print("total R$", float(self.saldo))
         conn = db.connect_db()
         db.atualizar_saldo(conn, self.cpf, self.saldo)
+    
+    def transferencia(self, quantidade, destinatario):
+        sacar = self.saque(quantidade)
+        if sacar == 0:
+            return 0
+        destinatario.deposito(quantidade)
 
     def ver_saldo(self):
         print(f"o saldo é de R${self.saldo}")

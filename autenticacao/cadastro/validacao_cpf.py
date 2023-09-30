@@ -77,4 +77,4 @@ def verificando_cpf(cpf):
 
 
 if __name__ == '__main__':
-    validacao_cpf('012.457.340-16')
+    print(padronizando_cpf('012.457.340-16'))

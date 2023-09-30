@@ -73,6 +73,7 @@ def search_user(conn):
     cursor.close()
     resultado = [tupla[0] for tupla in resultado]
 
+    print(resultado)
     return resultado
 
 
@@ -92,10 +93,32 @@ def atualizar_saldo(conn, cpf, saldo):
     cursor.execute(comando)
     conn.commit()
 
+def procurar_cpf(conn, cpf):
+    cursor = conn.cursor()
+    comando = f'SELECT cpf FROM conta WHERE cpf = {cpf}'
+    cursor.execute(comando)
+    resultado = cursor.fetchone()
+    cursor.close()
+
+    resultado = resultado[0]
+    print(resultado)
+    return resultado
+
+def procurar_nome(conn, cpf):
+    cursor = conn.cursor()
+    comando = f'SELECT nome FROM conta WHERE cpf = {cpf}'
+    cursor.execute(comando)
+    resultado = cursor.fetchone()
+    cursor.close()
+
+    resultado = resultado[0]
+    print(resultado)
+    return resultado
+
 if __name__ == '':
     conn = connect_db()
     create_user(conn, [f'{gerador.gerar_c80if()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])
 
 if __name__ == '__main__':
     conn = connect_db()
-    search_user(conn)
+    procurar_nome(conn, '15304307127')

@@ -53,6 +53,9 @@ def bank(nome, cpf):
 
 while True:
     opt_res = opt()
+    if opt_res == 3:
+        break
+    print(opt_res[1])
     print(opt_res[1].nome)
     print(opt_res[1].cpf)
     if opt_res[0] == 1:
@@ -62,8 +65,6 @@ while True:
             if logado == 0:
                 break
 
-    elif opt_res == 3:
-        break
 
 
 

@@ -46,3 +46,5 @@ Selecione uma opção
 
         destinatario = classes.Banco(chave, nome_destinatario)
         cliente_objeto.transferencia(quantidade, destinatario)
+    elif app_comands == 5:
+        return 0

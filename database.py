@@ -2,6 +2,7 @@ import mysql.connector
 from cadastro import validacao_cpf
 from testes import gerador
 
+
 def connect_db():
     conn = mysql.connector.connect(
         host="localhost",
@@ -10,6 +11,67 @@ def connect_db():
         database="r4 bank"
     )
     return conn
+
+
+# Função para criar uma conexão sem um banco de dados específico
+def connect_no_db():
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password=""
+    )
+    return conn
+
+# Função para criar o banco de dados e tabelas
+
+
+def criar_banco_e_tabelas(conn):
+    try:
+        # Verifica se a conexão está ativa
+        if conn.is_connected():
+            # Cria o cursor para executar comandos SQL
+            cursor = conn.cursor()
+
+            # Cria o banco de dados se não existir
+            cursor.execute("CREATE DATABASE IF NOT EXISTS `r4 bank`")
+
+            # Usa o banco de dados
+            cursor.execute("USE `r4 bank`")
+
+            # Cria a tabela `usuarios` se não existir
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS `usuarios` (
+                    `id` INT AUTO_INCREMENT PRIMARY KEY,
+                    `cpf` VARCHAR(11),
+                    `email` VARCHAR(255) NOT NULL,
+                    `nome` VARCHAR(20) NOT NULL,
+                    `senha` VARCHAR(20) NOT NULL
+                )
+            """)
+
+            # Cria a tabela `conta` se não existir
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS `conta` (
+                    `cpf` VARCHAR(11) PRIMARY KEY,
+                    `nome` VARCHAR(256) NOT NULL,
+                    `saldo` FLOAT NOT NULL DEFAULT 0,
+                    `historico` LONGTEXT CHECK (JSON_VALID(`historico`))
+                )
+            """)
+
+            # Confirma as alterações no banco de dados
+            conn.commit()
+
+            print("Banco de dados e tabelas criados com sucesso.")
+
+            # Fecha o cursor
+            cursor.close()
+    except mysql.connector.Error as err:
+        print(f"Erro ao criar banco de dados e tabelas: {str(err)}")
+    finally:
+        if conn.is_connected():
+            # Fecha a conexão se estiver aberta
+            conn.close()
 
 
 def read_user(conn):
@@ -22,7 +84,6 @@ def read_user(conn):
     # extrair strings das tuplas
     cpf = [tupla[0] for tupla in resultado]
     return cpf
-
 
 
 def read_email(conn):
@@ -46,6 +107,7 @@ def read_password(conn, cpf):
 
     return resultado
 
+
 def id_user(conn):
     cursor = conn.cursor()
     comando = f'SELECT cpf FROM usuarios'
@@ -64,6 +126,7 @@ def create_user(conn, dados):
     cursor.execute(comando)
     cursor.execute(conta_table)
     conn.commit()
+
 
 def search_user(conn):
     cursor = conn.cursor()
@@ -87,11 +150,13 @@ def saldo(conn, cpf):
     resultado = resultado[0]
     return resultado
 
+
 def atualizar_saldo(conn, cpf, saldo):
     cursor = conn.cursor()
     comando = f'UPDATE conta SET saldo = {saldo} WHERE cpf = {cpf}'
     cursor.execute(comando)
     conn.commit()
+
 
 def procurar_cpf(conn, cpf):
     cursor = conn.cursor()
@@ -104,6 +169,7 @@ def procurar_cpf(conn, cpf):
     print(resultado)
     return resultado
 
+
 def procurar_nome(conn, cpf):
     cursor = conn.cursor()
     comando = f'SELECT nome FROM conta WHERE cpf = {cpf}'
@@ -115,9 +181,11 @@ def procurar_nome(conn, cpf):
     print(resultado)
     return resultado
 
+
 if __name__ == '':
     conn = connect_db()
-    create_user(conn, [f'{gerador.gerar_c80if()}', f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])
+    create_user(conn, [f'{gerador.gerar_c80if()}',
+                f'{gerador.gerar_email()}', f'{gerador.gerar_nome()}', 'teste123'])
 
 if __name__ == '__main__':
     conn = connect_db()

@@ -37,13 +37,12 @@ Selecione uma opção:
 
     elif msg == 2:
         conn = database.connect_db()
-
-
         dados = cadastrar.cadastrar()
         if dados == -1:
             return dados
         database.create_user(conn, dados)
         return dados
+    
     elif msg == 3:
         return 3
 
@@ -54,11 +53,14 @@ def bank(nome, cpf):
 
 while True:
     opt_res = opt()
-    print(opt_res)
-    if opt_res == 1:
+    print(opt_res[1].nome)
+    print(opt_res[1].cpf)
+    if opt_res[0] == 1:
         cliente_objeto = opt_res[1]
         while True:
-            app.principal_app(cliente_objeto)
+            logado = app.principal_app(cliente_objeto)
+            if logado == 0:
+                break
 
     elif opt_res == 3:
         break

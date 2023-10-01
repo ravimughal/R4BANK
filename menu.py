@@ -9,6 +9,10 @@ print("Bem vindo ao R4 BANK")
 
 dados = []
 
+conn = database.connect_no_db()
+database.criar_banco_e_tabelas(conn)
+conn.close()
+
 def opt():
     msg = input("""
 Selecione uma opção: 
@@ -16,6 +20,7 @@ Selecione uma opção:
 2 - Cadastrar
 3 - Sair 
 """)
+
 
     msg = int(msg)
 
@@ -32,6 +37,8 @@ Selecione uma opção:
 
     elif msg == 2:
         conn = database.connect_db()
+
+
         dados = cadastrar.cadastrar()
         if dados == -1:
             return dados
@@ -47,12 +54,13 @@ def bank(nome, cpf):
 
 while True:
     opt_res = opt()
-    if opt_res[0] == 1:
+    print(opt_res)
+    if opt_res == 1:
         cliente_objeto = opt_res[1]
         while True:
             app.principal_app(cliente_objeto)
 
-    elif opt_res[0] == 3:
+    elif opt_res == 3:
         break
 
 
